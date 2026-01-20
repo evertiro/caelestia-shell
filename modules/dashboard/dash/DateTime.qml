@@ -69,6 +69,7 @@ Item {
 
         Loader {
             Layout.alignment: Qt.AlignHCenter
+            Layout.topMargin: -(Appearance.font.size.extraLarge * 0.4)
 
             active: Config.dashboard.showClockSeconds
             visible: active
