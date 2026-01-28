@@ -95,6 +95,7 @@ Dependencies:
 -   [`bash`](https://www.gnu.org/software/bash)
 -   `qt6-base`
 -   `qt6-declarative`
+-   `fd`
 
 Build dependencies:
 
