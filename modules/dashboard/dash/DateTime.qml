@@ -43,7 +43,7 @@ Item {
 
         StyledText {
             Layout.topMargin: -(font.pointSize * 0.4)
-            Layout.bottomMargin: Config.dashboard.showClockSeconds ? -(font.pointSize * 0.4) : unset
+            Layout.bottomMargin: Config.dashboard.showClockSeconds ? -(font.pointSize * 0.4) : 0
             Layout.alignment: Qt.AlignHCenter
             text: Time.minuteStr
             color: Colours.palette.m3secondary
