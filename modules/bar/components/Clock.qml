@@ -65,7 +65,7 @@ StyledRect {
 
             horizontalAlignment: StyledText.AlignHCenter
             text: {
-                if(Config.bar.clock.showSeconds)
+                if (Config.bar.clock.showSeconds)
                     return Time.format(Config.services.useTwelveHourClock ? "hh\nmm\nss\A" : "hh\nmm\nss");
 
                 return Time.format(Config.services.useTwelveHourClock ? "hh\nmm\nA" : "hh\nmm");
