@@ -27,12 +27,75 @@ CollapsibleSection {
         }
     }
 
+    StyledText {
+        Layout.topMargin: Appearance.spacing.normal
+        text: qsTr("Wallpaper")
+        font.pointSize: Appearance.font.size.larger
+        font.weight: 500
+    }
+
     SwitchRow {
         label: qsTr("Wallpaper enabled")
         checked: rootPane.wallpaperEnabled
         onToggled: checked => {
             rootPane.wallpaperEnabled = checked;
             rootPane.saveConfig();
+        }
+    }
+
+    SectionContainer {
+        id: wallpaperContainer
+
+        readonly property var mode: rootPane.wallpaperMode
+
+        function updateWallpaperMode(mode) {
+            rootPane.wallpaperMode = mode;
+            rootPane.saveConfig();
+        }
+
+        contentSpacing: Appearance.spacing.small
+        z: 2
+
+        SplitButtonRow {
+            label: qsTr("Wallpaper mode")
+            enabled: rootPane.wallpaperEnabled
+
+            menuItems: [
+                MenuItem {
+                    property string val: "stretch"
+
+                    text: qsTr("Stretch")
+                    icon: "pan_zoom"
+                },
+                MenuItem {
+                    property string val: "fit"
+
+                    text: qsTr("Preserve Aspect Fit")
+                    icon: "fit_screen"
+                },
+                MenuItem {
+                    property string val: "crop"
+
+                    text: qsTr("Preserve Aspect Crop")
+                    icon: "crop"
+                },
+                MenuItem {
+                    property string val: "tile"
+
+                    text: qsTr("Tile")
+                    icon: "grid_view"
+                }
+            ]
+
+            Component.onCompleted: {
+                for (let i = 0; i < menuItems.length; i++) {
+                    if (menuItems[i].val === wallpaperContainer.mode)
+                        active = menuItems[i];
+                }
+            }
+
+            // The signal from SplitButtonRow
+            onSelected: item => wallpaperContainer.updateWallpaperMode(item.val)
         }
     }
 
